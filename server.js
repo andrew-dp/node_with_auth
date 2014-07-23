@@ -18,23 +18,23 @@ var configDB        = require('./config/database.js');
 
 mongoose.connect(configDB.url);
 
-// require('./config/passport')(passport); // pass passport for configuration
+require('./config/passport')(passport);     // pass passport for configuration
 
-app.use(morgan('dev'));         // log every request to the console
-app.use(cookieparser());        // read cookies - needed for auth
-app.use(bodyParser());          // get info from html forms
+app.use(morgan('dev'));                     // log every request to the console
+app.use(cookieparser());                    // read cookies - needed for auth
+app.use(bodyParser());                      // get info from html forms
 
-app.set('view engine', 'ejs');  // ejs for templating
+app.set('view engine', 'ejs');              // ejs for templating
 
 // for passport
-app.use(session({ secret: 'wat' })); // session secret
+app.use(session({ secret: 'wat' }));        // session secret
 app.use(passport.initialize());
-app.use(passport.session());        // persist login sessions
-app.use(flash());                   // use connect-flash for flash messages stored in session
+app.use(passport.session());                // persist login sessions
+app.use(flash());                           // use connect-flash for flash messages stored in session
 
 // Routes ------------------------------------------
 
-require('./app/routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
+require('./app/routes.js')(app, passport);  // load our routes and pass in our app and fully configured passport
 
 // Launch ------------------------------------------
 
