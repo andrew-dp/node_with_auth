@@ -4,6 +4,8 @@ module.exports = function(app, passport) {
         res.render('index.ejs');
     });
 
+//  -----------------------------  Login  ----------------------------
+
     app.get('/login', function(req, res) {
         res.render('login.ejs', { message: req.flash('loginMessage') });
     });
@@ -14,8 +16,9 @@ module.exports = function(app, passport) {
         failureFlash : true
     }));
 
-    app.get('/signup', function(req, res) {
+//  -----------------------------  Signup  ----------------------------
 
+    app.get('/signup', function(req, res) {
         res.render('signup.ejs', { message: req.flash('signupMessage') });
     });
 
@@ -24,6 +27,14 @@ module.exports = function(app, passport) {
         failureRedirect : '/signup',
         failureFlash : true
     }));
+
+//  -----------------------------  Signup  ----------------------------
+
+    app.get('/map', function(req, res) {
+        res.render()
+    });
+
+//  -----------------------------  Profile  ----------------------------
 
     app.get('/profile', isLoggedIn, function(req, res) {
         res.render('profile.ejs', {
